@@ -10,7 +10,7 @@ services:
         external_url 'http://services-daata.com:8080'
     ports:
       - '8080:80'
-      - '8443:443'
+      - '4443:443'
     volumes:
       - '/srv/gitlab/config:/etc/gitlab'
       - '/srv/gitlab/logs:/var/log/gitlab'
