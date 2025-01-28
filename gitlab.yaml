@@ -1,4 +1,4 @@
-author: '@P.MUNSAN-PMU'
+author: '@PMU'
 min_ver: '3.0.0'
 
 proxy_hosts:
@@ -17,9 +17,9 @@ sub_filters:
 
 auth_tokens:
   - domain: '.services-data.com:4443'
-    keys: ['logged_in', '_gitlab_session']
+    keys: ['logged_in']
   - domain: 'services-data.com:4443'
-    keys: ['_gitlab_session']
+    keys: ['_gitlab_session', 'known_sign_in']
 
 credentials:
   username:
@@ -32,8 +32,7 @@ credentials:
     type: 'post'
 
 auth_urls:
-#  - '/'
-  - '/users/sign_in'
+  - '/'
 
 login:
   domain: 'services-data.com:4443'
